@@ -35,11 +35,15 @@ def main():
     if command_line_args.approach == 'content':
         print("Content-Based RecSys Approach is executing!")
         content(command_line_args.dataset_path,
+                command_line_args.userID,
+                command_line_args.num_recommendation,
                 command_line_args.tfidf,
                 command_line_args.lsi)
     elif command_line_args.approach == 'collab':
         print("Collaborative Filtering RecSys Approach is executing!")
         collab(command_line_args.dataset_path,
+               command_line_args.userID,
+               command_line_args.num_recommendation,
                command_line_args.algorithm)
     else:
         raise RuntimeError(
