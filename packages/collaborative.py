@@ -13,7 +13,7 @@ limitations under the License.
 """
 
 
-def initialize_collab(ratings):
+def initialize_collab(movies, ratings, user_id, num_recommendation, algorithm):
     total_number_of_ratings = ratings.shape[0]
     total_number_of_movies = ratings[['movieId']].drop_duplicates(['movieId']).shape[0]
     total_number_of_users = ratings[['userId']].drop_duplicates(['userId']).shape[0]
@@ -22,4 +22,9 @@ def initialize_collab(ratings):
     print('Total Number of Ratings : ', total_number_of_ratings)
     print('Total Number of Movies: ', total_number_of_movies)
     print('Total Number of Users: ', total_number_of_users)
+
+    print(movies.columns)
+    print(user_id)
+    print(num_recommendation)
+    print(algorithm)
     return
