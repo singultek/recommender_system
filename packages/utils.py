@@ -14,6 +14,8 @@ limitations under the License.
 
 # Import the necessary libraries
 import argparse
+import pandas as pd
+import numpy as np
 
 from .content import *
 from .collaborative import *
@@ -99,6 +101,14 @@ def collab(dataset_path: str,
     Returns:
         None
     """
-    print(dataset_path)
-    print(algorithm)
+    # Get the files and read them into Pandas DataFrames
+    movies_path = '{}/movies.csv'.format(dataset_path)
+    movies_df = pd.read_csv(movies_path)
+
+    ratings_path = '{}/ratings.csv'.format(dataset_path)
+    ratings_df = pd.read_csv(ratings_path)
+    ratings_df = ratings_df.drop('timestamp', axis=1)
+
+    # Initialize the Collaborative Filtering Approach
+    initialize_collab(ratings_df)
     return
