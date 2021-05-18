@@ -14,8 +14,6 @@ limitations under the License.
 
 # Import the necessary libraries
 import argparse
-import pandas as pd
-import numpy as np
 
 from .content import *
 from .collaborative import *
@@ -50,6 +48,12 @@ def parse_arguments() -> argparse.Namespace:
     content_parser.add_argument('dataset_path',
                                 type=str,
                                 help='A dataset folder where the data is stored')
+    content_parser.add_argument('userID',
+                                type=int,
+                                help='A integer value which indicates the userID to recommend movies')
+    content_parser.add_argument('num_recommendation',
+                                type=int,
+                                help='A integer value which indicates the number of recommention given for userID')
     content_parser.add_argument('--tfidf',
                                 default=True,
                                 type=bool,
@@ -63,6 +67,12 @@ def parse_arguments() -> argparse.Namespace:
     collab_parser.add_argument('dataset_path',
                                type=str,
                                help='A dataset folder where the data is stored')
+    collab_parser.add_argument('userID',
+                               type=int,
+                               help='A integer value which indicates the userID to recommend movies')
+    collab_parser.add_argument('num_recommendation',
+                               type=int,
+                               help='A integer value which indicates the number of recommention given for userID')
     collab_parser.add_argument('--algorithm',
                                default='UserUser',
                                type=str,
@@ -74,38 +84,39 @@ def parse_arguments() -> argparse.Namespace:
 
 
 def content(dataset_path: str,
+            user_id: int,
+            num_recommendation: int,
             tfidf: bool,
             lsi: bool) -> None:
     """
     The main content method to perform the recommending the movie with content-based approach
     Args:
         dataset_path: the string with the path of dataset
+        user_id: A integer value which indicates the userID to recommend movies
+        num_recommendation: A integer value which indicates the number of recommention given for userID
         tfidf: the boolean value which indicates whether TF-IDF technique will be applied to the counting or not
         lsi: the boolean value which indicates whether dictionary reduction with LSI technique will be applied or not
     Returns:
         None
     """
-    # Read the datasets into pandas dataframe
-    movies_path = '{}/movies.csv'.format(dataset_path)
-    movies_df = pd.read_csv(movies_path)
-
-    ratings_path = '{}/ratings.csv'.format(dataset_path)
-    ratings_df = pd.read_csv(ratings_path)
-    ratings_df = ratings_df.drop('timestamp', axis=1)
-
-    tags_path = '{}/tags.csv'.format(dataset_path)
-    tags_df = pd.read_csv(tags_path)
-    tags_df = tags_df.drop('timestamp', axis=1)
-    initialize_content(movies_df, ratings_df, tags_df)
+    # Initialize the movie object
+    movies = Movies(dataset_path=dataset_path, tfidf=tfidf, lsi=lsi, reduced_space=40)
+    users = Users(dataset_path, movies)
+    content_rec_sys = Content(movies, users)
+    content_rec_sys.recommend(user_id=user_id, number_of_recommendation=num_recommendation)
     return
 
 
 def collab(dataset_path: str,
+           user_id: int,
+           num_recommendation: int,
            algorithm: str) -> None:
     """
     The main collab method to perform the recommending the movie with collaborative filtering approach
     Args:
         dataset_path: the string with the path of dataset
+        user_id: A integer value which indicates the userID to recommend movies
+        num_recommendation: A integer value which indicates the number of recommention given for userID
         algorithm: the string with the name of algorithm to be used
     Returns:
         None
@@ -119,5 +130,5 @@ def collab(dataset_path: str,
     ratings_df = ratings_df.drop('timestamp', axis=1)
 
     # Initialize the Collaborative Filtering Approach
-    initialize_collab(ratings_df)
+    initialize_collab(movies_df, ratings_df, user_id, num_recommendation, algorithm)
     return
