@@ -85,9 +85,17 @@ def content(dataset_path: str,
     Returns:
         None
     """
-    print(dataset_path)
-    print(tfidf)
-    print(lsi)
+    # Read the datasets into pandas dataframe
+    movies_path = '{}/movies.csv'.format(dataset_path)
+    movies_df = pd.read_csv(movies_path)
+
+    ratings_path = '{}/ratings.csv'.format(dataset_path)
+    ratings_df = pd.read_csv(ratings_path)
+    ratings_df = ratings_df.drop('timestamp', axis=1)
+
+    tags_path = '{}/tags.csv'.format(dataset_path)
+    tags_df = pd.read_csv(tags_path)
+    tags_df = tags_df.drop('timestamp', axis=1)
     return
 
 
@@ -101,7 +109,7 @@ def collab(dataset_path: str,
     Returns:
         None
     """
-    # Get the files and read them into Pandas DataFrames
+    # Read the datasets into pandas dataframe
     movies_path = '{}/movies.csv'.format(dataset_path)
     movies_df = pd.read_csv(movies_path)
 
