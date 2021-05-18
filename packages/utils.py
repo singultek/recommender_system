@@ -96,6 +96,7 @@ def content(dataset_path: str,
     tags_path = '{}/tags.csv'.format(dataset_path)
     tags_df = pd.read_csv(tags_path)
     tags_df = tags_df.drop('timestamp', axis=1)
+    initialize_content(movies_df, ratings_df, tags_df)
     return
 
 

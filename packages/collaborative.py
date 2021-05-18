@@ -22,5 +22,4 @@ def initialize_collab(ratings):
     print('Total Number of Ratings : ', total_number_of_ratings)
     print('Total Number of Movies: ', total_number_of_movies)
     print('Total Number of Users: ', total_number_of_users)
-
     return
