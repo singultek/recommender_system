@@ -154,7 +154,7 @@ class Users:
 
     def __init__(self,
                  dataset_path: str,
-                 movie_instance: object) -> None:
+                 movie_instance: Movies) -> None:
         """
         Initializing the Users class
         Args:
@@ -168,6 +168,7 @@ class Users:
         self.create_dataframes(dataset_path)
         self.movies_list, self.users_list = self.__create_unique_lists(self.ratings_df)
         self.users_movies_dict(ratings_df=self.ratings_df)
+        self.user_vector(movie_instance)
 
     def create_dataframes(self,
                           dataset_path: str) -> None:
@@ -216,6 +217,36 @@ class Users:
                     ratings_df[(ratings_df['userId'] == user) & (ratings_df['rating'] == rating)]['movieId'])
         return self.users_rated_movie_dictionary
 
+    def user_vector(self,
+                    movie_instance: Movies) -> None:
+        """
+        The method that returns the vector model of users given by Movies object
+        Args:
+            movie_instance: the object instance of Movies class
+        Return:
+            None
+        """
+        # Creating an empty dictionary to store key(users) and values(rated movies)
+        self.user_vectors = {}
+        for user in self.users_list:
+            # Numerator is the sum of all the movie-vectors multiplied by the rating
+            numerator = 0
+            # Denominator is the sum of all the ratings
+            denominator = 0
+            for rating in self.users_rated_movie_dictionary[user]:
+                for movie in self.users_rated_movie_dictionary[user][rating]:
+                    numerator += rating * movie_instance.movie_vector(movie)
+                    denominator += rating
+            # Weighted average
+            self.user_vectors[user] = numerator/denominator
+
+    def user_movie_summary(self,
+                           user_id: int) -> (dict, list, dict):
+        """
+        The method that computes the
+        :param user_id:
+        :return:
+        """
 
 
 class Content:
