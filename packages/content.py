@@ -248,7 +248,10 @@ class Users:
         Args:
             user_id: ID of the user
         Return:
-
+            self.users_rated_movie_dictionary[user_id], non_rated_list, self.user_vectors[user_id]:
+            the dictionary describing the movies for each users,
+            the non-rated movies of user_id,
+            the vector model of the user given by user_id
         """
         # List of the movies those are rated by user_id
         rated_list = list(self.ratings_df[self.ratings_df['userId'] == user_id]['movieId'])
