@@ -36,7 +36,7 @@ class Movies:
             reduced_space: the integer value which indicates the number of components of the reduced space when dictionary reduction is applied(lsi=True)
                         By default, True is given
         Return:
-            Nonw
+            None
         """
         self.dataset_path = dataset_path
         self.tfidf = tfidf
@@ -156,9 +156,13 @@ class Users:
                  dataset_path=str,
                  movie_instance=object) -> None:
         """
-
-        :param dataset_path:
-        :param movie_instance:
+        Initializing the Users class
+        Args:
+            dataset_path: the string with the path of dataset
+                        By default, ./data folder path is given
+            movie_instance: the object instance of Movies class
+        Return:
+            None
         """
 
 
