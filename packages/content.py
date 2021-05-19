@@ -244,10 +244,21 @@ class Users:
                            user_id: int) -> (dict, list, dict):
         """
         The method that computes the dictionary describing the movies for each users,
-        the not rated movies of user_id and the vector model of the user given by user_id
-        :param user_id:
-        :return:
+        the non-rated movies of user_id and the vector model of the user given by user_id
+        Args:
+            user_id: ID of the user
+        Return:
+
         """
+        # List of the movies those are rated by user_id
+        rated_list = list(self.ratings_df[self.ratings_df['userId'] == user_id]['movieId'])
+
+        # List of all the movies
+        all_movie_list = self.movies_list
+
+        # List of the movies those are not rated by user_id
+        non_rated_list = list(set(all_movie_list) - set(rated_list))
+        return self.users_rated_movie_dictionary[user_id], non_rated_list, self.user_vectors[user_id]
 
 
 class Content:
