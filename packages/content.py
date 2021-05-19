@@ -302,20 +302,15 @@ class Content:
 
         # Append movie title and genre into recommendation list and convert more readable pd.Dataframe data type
         for i in range(int(self.number_of_recommendation)):
+            # It is good idea to round the similarity values
+            recommendations[i][0] = round(recommendations[i][0], 3)
 
-            similarity_measure = round(recommendations[i][0], 3)
-            print(similarity_measure)
-            print(self.movies.movies_df[self.movies.movies_df['movieId'] == recommendations[i][1]].values)
-            recommended_movie_id = self.movies.movies_df[self.movies.movies_df['movieId'] == recommendations[i][1]].values[0][0]
-            recommended_movie_title = self.movies.movies_df[self.movies.movies_df['movieId'] == recommendations[i][1]].values[0][1]
-            recommended_movie_genre = self.movies.movies_df[self.movies.movies_df['movieId'] == recommendations[i][1]].values[0][2]
+            # Append movie title and genres from self.movies.movies_df when self.movies.movies_df['movieId'] == recommendations[i][1]
+            # It returns 3 values as following, movie id, movie title, movie genres
+            recommendations[i].append(self.movies.movies_df[self.movies.movies_df['movieId'] == recommendations[i][1]].values[0][1])
+            recommendations[i].append(self.movies.movies_df[self.movies.movies_df['movieId'] == recommendations[i][1]].values[0][2])
 
-            recommendations[i][0] = similarity_measure
-            recommendations[i][1] = recommended_movie_id
-            recommendations[i].append(recommended_movie_title)
-            recommendations[i].append(recommended_movie_genre)
-
-        recommendations = pd.DataFrame(recommendations, columns=['similarity', 'movieId', 'title', 'genres'])
-        recommendations.sort_values(by=['similarity'], ascending=False, inplace=True, ignore_index=True)
-
+        # Concerting the array into pd.Dataframe and sort the values in descending ortder in order to show the most similar recommendations on the top
+        recommendations = pd.DataFrame(recommendations, columns=['COSINE SIMILARITY', 'MOVIE ID', 'MOVIE TITLE', 'GENRES'])
+        recommendations.sort_values(by=['COSINE SIMILARITY'], ascending=False, inplace=True, ignore_index=True)
         return recommendations
