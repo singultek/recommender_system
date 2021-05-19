@@ -153,8 +153,8 @@ class Movies:
 class Users:
 
     def __init__(self,
-                 dataset_path=str,
-                 movie_instance=object) -> None:
+                 dataset_path: str,
+                 movie_instance: object) -> None:
         """
         Initializing the Users class
         Args:
@@ -164,6 +164,58 @@ class Users:
         Return:
             None
         """
+        self.dataset_path = dataset_path
+        self.create_dataframes(dataset_path)
+        self.movies_list, self.users_list = self.__create_unique_lists(self.ratings_df)
+        self.users_movies_dict(ratings_df=self.ratings_df)
+
+    def create_dataframes(self,
+                          dataset_path: str) -> None:
+        """
+        The method for reading the datasets and creating dataframe
+        Args:
+            dataset_path: the string with the path of dataset
+        Return:
+            None
+        """
+        # Creates ratings dataframe
+        ratings_path = '{}/ratings.csv'.format(dataset_path)
+        self.ratings_df = pd.read_csv(ratings_path)
+
+    @staticmethod
+    def __create_unique_lists(dataframe: pd.DataFrame) -> (list, list):
+        """
+        The method for getting unique elements of dataframe
+        Args:
+            dataframe: the pd.Dataframe that will be computed to get unique elements
+        Return:
+            dataframe['movieId'].unique(), dataframe['userId'].unique(): the tuple of
+            lists those contain the unique movie and user elements
+        """
+        return dataframe['movieId'].unique(), dataframe['userId'].unique()
+
+    def users_movies_dict(self,
+                          ratings_df: pd.DataFrame) -> dict:
+        """
+        The method constructs a dictionary with users-movies that rated by users as key-values pairs
+        Args:
+            ratings_df: the pd.Dataframe that contains the users and rated movies by those users
+        Return:
+            self.users_rated_movie_dictionary: the dictionary contains the movieId's of users' each rate
+        """
+        # Creating an empty dictionary to store key(users) and values(rated movies)
+        self.users_rated_movie_dictionary = {}
+
+        # Constructing the key-value pairs
+        for user in self.users_list:
+            self.users_rated_movie_dictionary[user] = {}
+            # All ratings are product of a 0.5 between 0-5 range
+            for rating in np.arange(0, 5, 5, 0.5):
+                # Adding movieId into correct user and rating match-ups
+                self.users_rated_movie_dictionary[user][rating] = list(
+                    ratings_df[(ratings_df['userId'] == user) & (ratings_df['rating'] == rating)]['movieId'])
+        return self.users_rated_movie_dictionary
+
 
 
 class Content:
@@ -183,4 +235,3 @@ class Content:
         :param number_of_recommendation:
         :return:
         """
-
