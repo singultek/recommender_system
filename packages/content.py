@@ -243,7 +243,8 @@ class Users:
     def user_movie_summary(self,
                            user_id: int) -> (dict, list, dict):
         """
-        The method that computes the
+        The method that computes the dictionary describing the movies for each users,
+        the not rated movies of user_id and the vector model of the user given by user_id
         :param user_id:
         :return:
         """
