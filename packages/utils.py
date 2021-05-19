@@ -97,14 +97,16 @@ def content(dataset_path: str,
         tfidf: the boolean value which indicates whether TF-IDF technique will be applied to the counting or not
         lsi: the boolean value which indicates whether dictionary reduction with LSI technique will be applied or not
     Returns:
-        None
+        Content: the Content object that computes and gives the recommendations
     """
     # Initialize the movie object
     movies = Movies(dataset_path=dataset_path, tfidf=tfidf, lsi=lsi, reduced_space=40)
     users = Users(dataset_path, movies)
-    content_rec_sys = Content(movies, users)
-    content_rec_sys.recommend(user_id=user_id, number_of_recommendation=num_recommendation)
-    return
+    content_rec_sys = Content(movies,
+                              users,
+                              user_id=user_id,
+                              number_of_recommendation=num_recommendation)
+    print(content_rec_sys.recommend())
 
 
 def collab(dataset_path: str,
