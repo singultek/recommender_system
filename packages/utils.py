@@ -102,10 +102,20 @@ def content(dataset_path: str,
     # Initialize the movie object
     movies = Movies(dataset_path=dataset_path, tfidf=tfidf, lsi=lsi, reduced_space=40)
     users = Users(dataset_path, movies)
+
+    # Check the given inputs whether they are in the range or not
+    if user_id not in users.users_list:
+        raise ValueError('Please enter a valid user id in the range of 1-{}'.format(len(users.users_list)))
+    if num_recommendation > len(users.movies_list):
+        raise ValueError('Please enter a valid number of recommendation in the range of 1-{}'.format(len(users.movies_list)))
+
+    # Initiate the Content instance to get recommendations
     content_rec_sys = Content(movies,
                               users,
                               user_id=user_id,
                               number_of_recommendation=num_recommendation)
+
+    # Print the recommended movies list for given user_id and number_of_recommendation
     print(content_rec_sys.recommend())
 
 
