@@ -247,8 +247,7 @@ class Users:
         Args:
             user_id: ID of the user
         Return:
-            self.users_rated_movie_dictionary[user_id], non_rated_list, self.user_vectors[user_id]:
-            the dictionary describing the movies for each users,
+            non_rated_list, self.user_vectors[user_id]:
             the non-rated movies of user_id,
             the vector model of the user given by user_id
         """
@@ -260,7 +259,7 @@ class Users:
 
         # List of the movies those are not rated by user_id
         non_rated_list = list(set(all_movie_list) - set(rated_list))
-        return self.users_rated_movie_dictionary[user_id], non_rated_list, self.user_vectors[user_id]
+        return non_rated_list, self.user_vectors[user_id]
 
 
 class Content:
@@ -285,9 +284,10 @@ class Content:
         self.number_of_recommendation = number_of_recommendation
 
     def recommend(self):
+        print('Computing the similarity measures to recommend movies...')
         # Initialize the recommendations
         recommendations = [[0, 0]] * self.number_of_recommendation
-        _, non_rated_movies_list, user_vector = self.users.user_movie_summary(self.user_id)
+        non_rated_movies_list, user_vector = self.users.user_movie_summary(self.user_id)
         user_vector = user_vector.reshape(1, -1)
 
         for movieID in non_rated_movies_list:
