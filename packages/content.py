@@ -151,7 +151,6 @@ class Movies:
 
 
 class Users:
-
     def __init__(self,
                  dataset_path: str,
                  movie_instance: Movies) -> None:
@@ -211,7 +210,7 @@ class Users:
         for user in self.users_list:
             self.users_rated_movie_dictionary[user] = {}
             # All ratings are product of a 0.5 between 0-5 range
-            for rating in np.arange(0, 5, 5, 0.5):
+            for rating in np.arange(0, 5.5, 0.5):
                 # Adding movieId into correct user and rating match-ups
                 self.users_rated_movie_dictionary[user][rating] = list(
                     ratings_df[(ratings_df['userId'] == user) & (ratings_df['rating'] == rating)]['movieId'])
@@ -238,7 +237,7 @@ class Users:
                     numerator += rating * movie_instance.movie_vector(movie)
                     denominator += rating
             # Weighted average
-            self.user_vectors[user] = numerator/denominator
+            self.user_vectors[user] = numerator / denominator
 
     def user_movie_summary(self,
                            user_id: int) -> (dict, list, dict):
@@ -266,18 +265,57 @@ class Users:
 
 class Content:
     def __init__(self,
-                 movie_instance=object,
-                 user_instance=object):
+                 movie_instance: Movies,
+                 user_instance: Users,
+                 user_id: int,
+                 number_of_recommendation: int) -> None:
         """
+        Initializing the Content class to compute Content-Based RecSys
+        Args:
+            movie_instance: the object instance of Movies class
+            user_instance: the object instance of Users class
+            user_id: ID of the user
+            number_of_recommendation: the integer value indicates the total number of recommended movies
+        Return:
+            None
+        """
+        self.movies = movie_instance
+        self.users = user_instance
+        self.user_id = user_id
+        self.number_of_recommendation = number_of_recommendation
 
-        :param movie_instance:
-        :param user_instance:
-        """
+    def recommend(self):
+        # Initialize the recommendations
+        recommendations = [[0, 0]] * self.number_of_recommendation
+        _, non_rated_movies_list, user_vector = self.users.user_movie_summary(self.user_id)
+        user_vector = user_vector.reshape(1, -1)
 
-    def recommend(self, user_id, number_of_recommendation):
-        """
+        for movieID in non_rated_movies_list:
+            movie_vector = self.movies.movie_vector(movieID).reshape(1, -1)
+            # Compute the similarity of user vector and movie vector with cosine similarity measure
+            similarity = float(cosine_similarity(user_vector, movie_vector))
 
-        :param user_id:
-        :param number_of_recommendation:
-        :return:
-        """
+            # Since the recommendations are sorted in ascending order, one can confidently insert the similarity in the list when similarity > recommendations[0][0]
+            if similarity > recommendations[0][0]:
+                recommendations[0] = [similarity, movieID]
+                recommendations = sorted(recommendations, key=lambda x: x[0])
+
+        # Append movie title and genre into recommendation list and convert more readable pd.Dataframe data type
+        for i in range(int(self.number_of_recommendation)):
+
+            similarity_measure = round(recommendations[i][0], 3)
+            print(similarity_measure)
+            print(self.movies.movies_df[self.movies.movies_df['movieId'] == recommendations[i][1]].values)
+            recommended_movie_id = self.movies.movies_df[self.movies.movies_df['movieId'] == recommendations[i][1]].values[0][0]
+            recommended_movie_title = self.movies.movies_df[self.movies.movies_df['movieId'] == recommendations[i][1]].values[0][1]
+            recommended_movie_genre = self.movies.movies_df[self.movies.movies_df['movieId'] == recommendations[i][1]].values[0][2]
+
+            recommendations[i][0] = similarity_measure
+            recommendations[i][1] = recommended_movie_id
+            recommendations[i].append(recommended_movie_title)
+            recommendations[i].append(recommended_movie_genre)
+
+        recommendations = pd.DataFrame(recommendations, columns=['similarity', 'movieId', 'title', 'genres'])
+        recommendations.sort_values(by=['similarity'], ascending=False, inplace=True, ignore_index=True)
+
+        return recommendations
