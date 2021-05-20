@@ -123,16 +123,22 @@ class CollabMovies:
             number_of_recommendation: the integer value that indicates the required number of recommendations
             selected_algorithm: the KNNBaseline or SVD surprise object to be used for model based approach
         Return:
-            recommendations: pd.Dataframe that contains the recommended movies
+            recommendations.head(number_of_recommendation): pd.Dataframe that contains the recommended movies
         """
-
+        # Creating the surprise models for reader and dataset
+        # rating_scale indicates the range of given ratings
         reader = Reader(rating_scale=(1, 5))
         data = Dataset.load_from_df(self.ratings_df[['userId', 'movieId', 'rating']], reader)
 
+        # Building whole trainset to train the algorithm
         train_dataset = data.build_full_trainset()
+        # Building a test set from remaining part of tha dataset
         test_dataset = train_dataset.build_anti_testset()
-
+        # Train and test the model
         recommendations = selected_algorithm.fit(train_dataset).test(test_dataset)
+        # Convert the recommendations into pd.Dataframe data type
         recommendations = pd.DataFrame(recommendations, columns=['userId', 'movieId', 'trueRating', 'estimatedRating', 'USELESS COLUMN']).drop(columns='USELESS COLUMN')
+        # Merge the recommendations with self.movies_df in order to get additional informations of movie title and genres
+        # Sort the values in descending ortder in order to show the most similar recommendations on the top
         recommendations = pd.merge(left=recommendations[recommendations['userId'] == user_id].sort_values(by='estimatedRating', ascending=False, ignore_index=True), right=self.movies_df, on='movieId')
         return recommendations.head(number_of_recommendation)
