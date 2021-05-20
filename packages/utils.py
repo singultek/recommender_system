@@ -74,9 +74,8 @@ def parse_arguments() -> argparse.Namespace:
                                type=int,
                                help='A integer value which indicates the number of recommention given for userID')
     collab_parser.add_argument('--algorithm',
-                               default='UserUser',
+                               # default='UserUser',
                                type=str,
-                               choices=['UserUser', 'ItemItem'],
                                help='(default = UserUser) A Collaborative Filtering RecSys Approach which will be used to recommend')
 
     args_parsed = parser.parse_args()
@@ -107,7 +106,8 @@ def content(dataset_path: str,
     if user_id not in users.users_list:
         raise ValueError('Please enter a valid user id in the range of 1-{}'.format(len(users.users_list)))
     if num_recommendation > len(users.movies_list):
-        raise ValueError('Please enter a valid number of recommendation in the range of 1-{}'.format(len(users.movies_list)))
+        raise ValueError(
+            'Please enter a valid number of recommendation in the range of 1-{}'.format(len(users.movies_list)))
 
     # Initiate the Content instance to get recommendations
     content_rec_sys = Content(movies,
@@ -134,15 +134,15 @@ def collab(dataset_path: str,
         None
     """
     # Initialize the movie object
-    movies = CollabMovies(dataset_path=dataset_path)
+    movies = CollabMovies(dataset_path=dataset_path, algorithm=algorithm)
 
-    movies_path = '{}/movies.csv'.format(dataset_path)
-    movies_df = pd.read_csv(movies_path)
+    # Check the given inputs whether they are in the range or not
+    if user_id not in movies.users_list:
+        raise ValueError('Please enter a valid user id in the range of 1-{}'.format(len(movies.users_list)))
+    if num_recommendation > len(movies.movies_list):
+        raise ValueError(
+            'Please enter a valid number of recommendation in the range of 1-{}'.format(len(movies.movies_list)))
 
-    ratings_path = '{}/ratings.csv'.format(dataset_path)
-    ratings_df = pd.read_csv(ratings_path)
-    ratings_df = ratings_df.drop('timestamp', axis=1)
-
-    # Initialize the Collaborative Filtering Approach
-    initialize_collab(movies_df, ratings_df, user_id, num_recommendation, algorithm)
-    return
+    #print(user_id)
+    #print(num_recommendation)
+    #print(algorithm)
