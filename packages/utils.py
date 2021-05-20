@@ -100,7 +100,7 @@ def content(dataset_path: str,
         Content: the Content object that computes and gives the recommendations
     """
     # Initialize the movie object
-    movies = Movies(dataset_path=dataset_path, tfidf=tfidf, lsi=lsi, reduced_space=40)
+    movies = ContentMovies(dataset_path=dataset_path, tfidf=tfidf, lsi=lsi, reduced_space=40)
     users = Users(dataset_path, movies)
 
     # Check the given inputs whether they are in the range or not
@@ -133,7 +133,9 @@ def collab(dataset_path: str,
     Returns:
         None
     """
-    # Read the datasets into pandas dataframe
+    # Initialize the movie object
+    movies = CollabMovies(dataset_path=dataset_path)
+
     movies_path = '{}/movies.csv'.format(dataset_path)
     movies_df = pd.read_csv(movies_path)
 
