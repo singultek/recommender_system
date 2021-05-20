@@ -142,6 +142,5 @@ def collab(dataset_path: str,
         raise ValueError(
             'Please enter a valid number of recommendation in the range of 1-{}'.format(len(movies.movies_list)))
 
-    #print(user_id)
-    #print(num_recommendation)
-    #print(algorithm)
+    collaborative_rec_sys = movies.recommend(user_id, num_recommendation, movies.selected_algorithm)
+    print(collaborative_rec_sys)
