@@ -110,12 +110,10 @@ def content(dataset_path: str,
 
     # Initiate the Content instance to get recommendations
     content_rec_sys = Content(movies,
-                              users,
-                              user_id=user_id,
-                              number_of_recommendation=num_recommendation)
+                              users)
 
     # Print the recommended movies list for given user_id and number_of_recommendation
-    print(content_rec_sys.recommend())
+    print(content_rec_sys.recommend(user_id=user_id, number_of_recommendation=num_recommendation))
 
 
 def collab(dataset_path: str,
