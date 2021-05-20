@@ -80,7 +80,9 @@ class CollabMovies:
 
         # Executing the selected algorithm with respect to value of string
         if algorithm is not None:
+            # First string value indicates the backbone of approach
             backbone = algorithm.split('-')[0]
+            # Check the possible options
             if backbone == 'KNN' and len(algorithm.split('-')) == 3:
                 print('KNN model based collaborative approach is selected!')
                 similarity_measure = algorithm.split('-')[1]
@@ -107,6 +109,7 @@ class CollabMovies:
                     'The given algorithm format {} is not recognized. Please check the propoer format'.format(
                         str(backbone)))
         elif algorithm is None:
+            # Raise an error message for None value for algorithm
             raise ValueError('Please give an algorithm! Algorithm cannot be left empty')
 
     def recommend(self,
