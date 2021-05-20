@@ -35,6 +35,7 @@ class CollabMovies:
         self.create_dataframes(dataset_path)
         self.movies_list, self.users_list = self.__create_unique_lists(self.ratings_df)
         self.choose_algorithm(algorithm=algorithm)
+        return
 
     def create_dataframes(self,
                           dataset_path: str) -> None:
@@ -53,6 +54,7 @@ class CollabMovies:
         ratings_path = '{}/ratings.csv'.format(dataset_path)
         self.ratings_df = pd.read_csv(ratings_path)
         self.ratings_df = self.ratings_df.drop('timestamp', axis=1)
+        return
 
     @staticmethod
     def __create_unique_lists(dataframe: pd.DataFrame) -> (list, list):
@@ -109,6 +111,7 @@ class CollabMovies:
         elif algorithm is None:
             # Raise an error message for None value for algorithm
             raise ValueError('Please give an algorithm! Algorithm cannot be left empty')
+        return
 
     def recommend(self,
                   user_id: int,
