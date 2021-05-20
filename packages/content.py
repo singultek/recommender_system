@@ -265,36 +265,33 @@ class Users:
 class Content:
     def __init__(self,
                  movie_instance: ContentMovies,
-                 user_instance: Users,
-                 user_id: int,
-                 number_of_recommendation: int) -> None:
+                 user_instance: Users) -> None:
         """
         Initializing the Content class to compute Content-Based RecSys
         Args:
             movie_instance: the object instance of ContentMovies class
             user_instance: the object instance of Users class
-            user_id: ID of the user
-            number_of_recommendation: the integer value indicates the total number of recommended movies
         Return:
             None
         """
         self.movies = movie_instance
         self.users = user_instance
-        self.user_id = user_id
-        self.number_of_recommendation = number_of_recommendation
 
-    def recommend(self) -> pd.Dataframe:
+    def recommend(self,
+                  user_id: int,
+                  number_of_recommendation: int) -> pd.DataFrame:
         """
         The method that predicts the movie recommendations
         Args:
-
+            user_id: ID of the user
+            number_of_recommendation: the integer value indicates the total number of recommended movies
         Return:
-            recommendations: pd.Dataframe that contains the recommended movies
+            recommendations.head(number_of_recommendation): pd.Dataframe that contains the recommended movies
         """
         print('Computing the similarity measures to recommend movies...')
         # Initialize the recommendations
-        recommendations = [[0, 0]] * self.number_of_recommendation
-        non_rated_movies_list, user_vector = self.users.user_movie_summary(self.user_id)
+        recommendations = [[0, 0]] * number_of_recommendation
+        non_rated_movies_list, user_vector = self.users.user_movie_summary(user_id)
         user_vector = user_vector.reshape(1, -1)
 
         for movieID in non_rated_movies_list:
@@ -308,7 +305,7 @@ class Content:
                 recommendations = sorted(recommendations, key=lambda x: x[0])
 
         # Append movie title and genre into recommendation list and convert more readable pd.Dataframe data type
-        for i in range(int(self.number_of_recommendation)):
+        for i in range(int(number_of_recommendation)):
             # It is good idea to round the similarity values
             recommendations[i][0] = round(recommendations[i][0], 3)
 
@@ -320,4 +317,4 @@ class Content:
         # Concerting the array into pd.Dataframe and sort the values in descending ortder in order to show the most similar recommendations on the top
         recommendations = pd.DataFrame(recommendations, columns=['cosineSimilarity', 'movieId', 'movieTitle', 'movieGenres'])
         recommendations.sort_values(by=['cosineSimilarity'], ascending=False, inplace=True, ignore_index=True)
-        return recommendations
+        return recommendations.head(number_of_recommendation)
