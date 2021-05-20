@@ -75,7 +75,10 @@ class CollabMovies:
         Return:
             None
         """
+        # Initialize the empty string for selected algorithm
         self.selected_algorithm = ''
+
+        # Executing the selected algorithm with respect to value of string
         if algorithm is not None:
             backbone = algorithm.split('-')[0]
             if backbone == 'KNN' and len(algorithm.split('-')) == 3:
@@ -109,7 +112,16 @@ class CollabMovies:
     def recommend(self,
                   user_id: int,
                   number_of_recommendation: int,
-                  selected_algorithm: KNNBaseline or SVD):
+                  selected_algorithm: KNNBaseline or SVD) -> pd.DataFrame:
+        """
+        The method that predicts the movie recommendations
+        Args:
+            user_id: the integer value that stored the userID that prediction is made for
+            number_of_recommendation: the integer value that indicates the required number of recommendations
+            selected_algorithm: the KNNBaseline or SVD surprise object to be used for model based approach
+        Return:
+            recommendations: pd.Dataframe that contains the recommended movies
+        """
 
         reader = Reader(rating_scale=(1, 5))
         data = Dataset.load_from_df(self.ratings_df[['userId', 'movieId', 'rating']], reader)
