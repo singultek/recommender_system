@@ -311,6 +311,6 @@ class Content:
             recommendations[i].append(self.movies.movies_df[self.movies.movies_df['movieId'] == recommendations[i][1]].values[0][2])
 
         # Concerting the array into pd.Dataframe and sort the values in descending ortder in order to show the most similar recommendations on the top
-        recommendations = pd.DataFrame(recommendations, columns=['COSINE SIMILARITY', 'MOVIE ID', 'MOVIE TITLE', 'GENRES'])
-        recommendations.sort_values(by=['COSINE SIMILARITY'], ascending=False, inplace=True, ignore_index=True)
+        recommendations = pd.DataFrame(recommendations, columns=['cosineSimilarity', 'movieId', 'movieTitle', 'movieGenres'])
+        recommendations.sort_values(by=['cosineSimilarity'], ascending=False, inplace=True, ignore_index=True)
         return recommendations
