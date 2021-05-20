@@ -73,10 +73,9 @@ def parse_arguments() -> argparse.Namespace:
     collab_parser.add_argument('num_recommendation',
                                type=int,
                                help='A integer value which indicates the number of recommention given for userID')
-    collab_parser.add_argument('--algorithm',
-                               # default='UserUser',
+    collab_parser.add_argument('algorithm',
                                type=str,
-                               help='(default = UserUser) A Collaborative Filtering RecSys Approach which will be used to recommend')
+                               help='A Collaborative Filtering RecSys Approach which will be used to recommend')
 
     args_parsed = parser.parse_args()
     return args_parsed
