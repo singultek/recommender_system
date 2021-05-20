@@ -18,14 +18,14 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.decomposition import TruncatedSVD
 
 
-class Movies:
+class ContentMovies:
     def __init__(self,
                  dataset_path='./data',
                  tfidf=True,
                  lsi=True,
                  reduced_space=40) -> None:
         """
-        Initializing the Movies class
+        Initializing the ContentMovies class
         Args:
             dataset_path: the string with the path of dataset
                         By default, ./data folder path is given
@@ -153,13 +153,13 @@ class Movies:
 class Users:
     def __init__(self,
                  dataset_path: str,
-                 movie_instance: Movies) -> None:
+                 movie_instance: ContentMovies) -> None:
         """
         Initializing the Users class
         Args:
             dataset_path: the string with the path of dataset
                         By default, ./data folder path is given
-            movie_instance: the object instance of Movies class
+            movie_instance: the object instance of ContentMovies class
         Return:
             None
         """
@@ -217,11 +217,11 @@ class Users:
         return self.users_rated_movie_dictionary
 
     def user_vector(self,
-                    movie_instance: Movies) -> None:
+                    movie_instance: ContentMovies) -> None:
         """
-        The method that returns the vector model of users given by Movies object
+        The method that returns the vector model of users given by ContentMovies object
         Args:
-            movie_instance: the object instance of Movies class
+            movie_instance: the object instance of ContentMovies class
         Return:
             None
         """
@@ -264,14 +264,14 @@ class Users:
 
 class Content:
     def __init__(self,
-                 movie_instance: Movies,
+                 movie_instance: ContentMovies,
                  user_instance: Users,
                  user_id: int,
                  number_of_recommendation: int) -> None:
         """
         Initializing the Content class to compute Content-Based RecSys
         Args:
-            movie_instance: the object instance of Movies class
+            movie_instance: the object instance of ContentMovies class
             user_instance: the object instance of Users class
             user_id: ID of the user
             number_of_recommendation: the integer value indicates the total number of recommended movies
