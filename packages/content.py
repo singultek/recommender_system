@@ -283,7 +283,14 @@ class Content:
         self.user_id = user_id
         self.number_of_recommendation = number_of_recommendation
 
-    def recommend(self):
+    def recommend(self) -> pd.Dataframe:
+        """
+        The method that predicts the movie recommendations
+        Args:
+
+        Return:
+             recommendations: pd.Dataframe that contains the recommended movies
+        """
         print('Computing the similarity measures to recommend movies...')
         # Initialize the recommendations
         recommendations = [[0, 0]] * self.number_of_recommendation
