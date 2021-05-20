@@ -1,0 +1,16 @@
+python3 recommender_system.py content ./data 65 10
+
+python3 recommender_system.py collab ./data 65 10 SVD-50-0.002
+
+python3 recommender_system.py collab ./data 65 10 KNN-cosine-user
+python3 recommender_system.py collab ./data 65 10 KNN-cosine-item
+
+python3 recommender_system.py collab ./data 65 10 KNN-pearson-user
+python3 recommender_system.py collab ./data 65 10 KNN-pearson-item
+
+python3 recommender_system.py collab ./data 65 10 KNN-msd-user
+python3 recommender_system.py collab ./data 65 10 KNN-msd-item
+
+python3 recommender_system.py collab ./data 65 10 KNN-pearson_baseline-user
+python3 recommender_system.py collab ./data 65 10 KNN-pearson_baseline-item
+
