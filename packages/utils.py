@@ -114,6 +114,7 @@ def content(dataset_path: str,
 
     # Print the recommended movies list for given user_id and number_of_recommendation
     print(content_rec_sys.recommend(user_id=user_id, number_of_recommendation=num_recommendation))
+    return
 
 
 def collab(dataset_path: str,
@@ -142,3 +143,4 @@ def collab(dataset_path: str,
 
     collaborative_rec_sys = movies.recommend(user_id, num_recommendation, movies.selected_algorithm)
     print(collaborative_rec_sys)
+    return
