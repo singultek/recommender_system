@@ -46,6 +46,7 @@ class ContentMovies:
         self.create_dataframes(dataset_path)
         self.dictionary_bag_of_words(movie_df=self.movies_df, tags_df=self.tags_df)
         self.movie_dictionary_matrix(tfidf=tfidf, lsi=lsi, reduced_space=reduced_space)
+        return
 
     def create_dataframes(self,
                           dataset_path: str) -> None:
@@ -64,6 +65,7 @@ class ContentMovies:
         tags_path = '{}/tags.csv'.format(dataset_path)
         self.tags_df = pd.read_csv(tags_path)
         self.tags_df = self.tags_df.drop('timestamp', axis=1)
+        return
 
     def dictionary_bag_of_words(self,
                                 movie_df: pd.DataFrame,
@@ -168,6 +170,7 @@ class Users:
         self.movies_list, self.users_list = self.__create_unique_lists(self.ratings_df)
         self.users_movies_dict(ratings_df=self.ratings_df)
         self.user_vector(movie_instance)
+        return
 
     def create_dataframes(self,
                           dataset_path: str) -> None:
@@ -181,6 +184,7 @@ class Users:
         # Creates ratings dataframe
         ratings_path = '{}/ratings.csv'.format(dataset_path)
         self.ratings_df = pd.read_csv(ratings_path)
+        return
 
     @staticmethod
     def __create_unique_lists(dataframe: pd.DataFrame) -> (list, list):
@@ -238,6 +242,7 @@ class Users:
                     denominator += rating
             # Weighted average
             self.user_vectors[user] = numerator / denominator
+        return
 
     def user_movie_summary(self,
                            user_id: int) -> (dict, list, dict):
@@ -276,6 +281,7 @@ class Content:
         """
         self.movies = movie_instance
         self.users = user_instance
+        return
 
     def recommend(self,
                   user_id: int,
