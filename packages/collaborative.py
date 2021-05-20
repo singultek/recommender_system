@@ -94,9 +94,7 @@ class CollabMovies:
                     self.selected_algorithm = KNNBaseline(sim_options={'name': similarity_measure,
                                                                        'user_based': False})
                 else:
-                    raise ValueError(
-                        'The given parameters {} for KNN algorithm is not recognized. Please check the propoer format'.format(
-                            str(backbone) + '-' + str(similarity_measure) + '-' + str(user_based)))
+                    raise ValueError('The given parameters {} for KNN algorithm is not recognized. Please check the propoer format'.format(str(backbone) + '-' + str(similarity_measure) + '-' + str(user_based)))
             elif backbone == 'SVD' and len(algorithm.split('-')) == 3:
                 print('SVD model based collaborative approach is selected!')
                 epoch = int(algorithm.split('-')[1])
