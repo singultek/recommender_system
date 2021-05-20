@@ -289,7 +289,7 @@ class Content:
         Args:
 
         Return:
-             recommendations: pd.Dataframe that contains the recommended movies
+            recommendations: pd.Dataframe that contains the recommended movies
         """
         print('Computing the similarity measures to recommend movies...')
         # Initialize the recommendations
