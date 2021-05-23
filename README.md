@@ -79,14 +79,12 @@ The methods of packages.content.ContentMovies() are as following:
 The methods of packages.content.Users() are as following:
 
 1. `__init__()`: Class constructer
-  * 
-  * 
-2. `create_dataframes`: 
-  * 
-3. `__create_unique_lists()`: 
-  * 
-  * 
-  * 
+  * Checks the given data_path
+  * Calls the methods for further steps
+2. `create_dataframes`: Creating pandas dataframes method
+  * Gets the given data_path, reads and creates dataframes for ratings
+3. `__create_unique_lists()`: Getting unique elements method
+  *  Returns to the list of unique elements of given input dataframes 
 4. `users_movies_dict()`: 
   *  
 5. `user_vector()`: 
