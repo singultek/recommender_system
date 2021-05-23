@@ -158,7 +158,7 @@ optional arguments:
   --lsi LSI           (default = True) The boolean value which indicates whether dictionary reduction with LSI technique will be applied or not
 
 ```
-One example of usage of train mode:
+One example of usage of content based recommender system:
 
 `$ python3 recommender_system.py content ./data 65 10`: builts a recommender system with content based approach with the dataset on `./data` for userID `65` and `10` maximum number of recommendations.
 
