@@ -108,6 +108,25 @@ The methods of packages.content.Content() are as following:
 
 ### Recommending by using Collaborative Filtering Based Approach
 
+This part is responsible for getting the dataset, initializing the Collaborative Filtering based approach and recommending movies. All the responsibilities of that part is computed with [packages.collab](https://github.com/singultek/recommender_system/blob/main/packages/collab.py). Inside this package, one can see the packages.content.CollabMovies() class, which is built to store the movie, user information and recommend with respect to features of this information. 
+
+The methods of packages.collab.CollabMovies() are as following:
+
+1. `__init__()`: 
+  * 
+  * 
+2. `create_dataframes`: 
+  * 
+3. `__create_unique_lists()`: 
+  * 
+  * 
+  * 
+4. `choose_algorithm()`: 
+  *  
+5. `recommend()`: 
+  * 
+  * 
+
 
 ---
 ## Usage examples
