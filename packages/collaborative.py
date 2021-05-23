@@ -16,6 +16,7 @@ import pandas as pd
 from surprise import Reader
 from surprise import Dataset
 from surprise import KNNBaseline, SVD
+from surprise import accuracy
 
 
 class CollabMovies:
@@ -137,6 +138,9 @@ class CollabMovies:
         test_dataset = train_dataset.build_anti_testset()
         # Train and test the model
         recommendations = selected_algorithm.fit(train_dataset).test(test_dataset)
+        # Store the accuracy of model with Root Mean Sqared Error
+        rmse = accuracy.rmse(recommendations, verbose=False)
+        print('Root Mean Squared Error is {}'.format(rmse))
         # Convert the recommendations into pd.Dataframe data type
         recommendations = pd.DataFrame(recommendations, columns=['userId', 'movieId', 'trueRating', 'estimatedRating', 'USELESS COLUMN']).drop(columns='USELESS COLUMN')
         # Merge the recommendations with self.movies_df in order to get additional informations of movie title and genres
