@@ -121,11 +121,13 @@ The methods of packages.collab.CollabMovies() are as following:
   * Returns to the list of unique elements of given input dataframes 
 4. `choose_algorithm()`: Selecting the given algorithm method
   * Gets the given algorithm input and creates a model from the given algorithm 
-  * K-Nearest Neighbour(KNN) and Singular Value Decomposition(SVD) are the algorithm options
+  * [K-Nearest Neighbour(KNN)](https://surprise.readthedocs.io/en/stable/knn_inspired.html#surprise.prediction_algorithms.knns.KNNBaseline) and [Singular Value Decomposition(SVD)](https://surprise.readthedocs.io/en/stable/matrix_factorization.html#surprise.prediction_algorithms.matrix_factorization.SVD) algorithms are the options for model based collaborative filtering approach
   * KNN performs clustering and SVD performs matrix factorization techniques
-5. `recommend()`: 
-  * 
-  * 
+5. `recommend()`: Predicting recommended movies method
+  * Gets the userID, number of recommendations and algorithm as input
+  * Creates [surprise.Reader](https://surprise.readthedocs.io/en/stable/reader.html#surprise.reader.Reader) and [surprise.Dataset](https://surprise.readthedocs.io/en/stable/dataset.html#surprise.dataset.Dataset.load_from_df) instances
+  * Trains the model of given algorithm 
+  * Returns the recommended movies
 
 
 ---
