@@ -50,7 +50,7 @@ The project can be divided into 2 main parts.
 * Recommending by using Content Based Approach
 * Recommending by using Collaborative Filtering Based Approach
 
-[recommender_system](https://github.com/singultek/recommender_system/blob/main/recommender_system.py) main method should be used. For detailed usage options, please check the usage examples part. recommender_system imports [packages.utils]([recommender_system](https://github.com/singultek/recommender_system/blob/main/packages/utils.py)), thus it can parse the command line arguments and call the proper method from packages.utils (Ex. recommender_system.py can call packages.utils.content if the content based recommender system is selected).
+[recommender_system](https://github.com/singultek/recommender_system/blob/main/recommender_system.py) main method should be used. For detailed usage options, please check the usage examples part. recommender_system imports [packages.utils](https://github.com/singultek/recommender_system/blob/main/packages/utils.py), thus it can parse the command line arguments and call the proper method from packages.utils (Ex. recommender_system.py can call packages.utils.content if the content based recommender system is selected).
 
 ---
 
