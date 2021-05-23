@@ -14,7 +14,11 @@ The project about building concrete recommender system by using Content-Based an
 ---
 ## Brief Introduction
 
-
+In this project, 2 main approaches of Recommender System will be presented. First one is the content based recommender approach. In this implementation, additional information about the user and/or item is explored. In this case, the genres of the movies is examined to find out recommendations for given userID. In the second approach, collaborative filtering based recommender system is applied. This time, recommender relies on the user-item interactions by using models such as KNN and SVD. Unfortunately, memory based techniques are not performed due to memory issues.
+The dataset is can be found on the official [MovieLens](https://grouplens.org/datasets/movielens/) website. The small,100k version of the dataset is used for this project, that can be found in the [data](https://github.com/singultek/recommender_system/blob/main/data). As the official website implies, there are approxiamately:
+* 100,000 ratings 
+* 3,600 tag applications  
+* 600 users
 
 ---
 ## Directory structure
@@ -97,15 +101,15 @@ optional arguments:
 
 ---
 
-### Discussion of Results
+## Discussion of Results
 
 
                           
                                
 ---
-### About Author
+## About Author
 
-I'm Sinan Gültekin, a master student on Computer and Automation Engineering at University of Siena. 
+I'm Sinan Gültekin, a master student in Computer and Automation Engineering at the University of Siena. 
 
 For any suggestions or questions, you can contact me via <singultek@gmail.com>
 
