@@ -111,11 +111,12 @@ This part is responsible for getting the dataset, initializing the Collaborative
 
 The methods of packages.collab.CollabMovies() are as following:
 
-1. `__init__()`: 
-  * 
-  * 
-2. `create_dataframes`: 
-  * 
+1. `__init__()`: Class constructer
+  * Checks the given data_path
+  * Checks the given algorithm to be used
+  * Calls the methods for further steps
+2. `create_dataframes`: Creating pandas dataframes method
+  * Gets the given data_path, reads and creates dataframes for movies and ratings
 3. `__create_unique_lists()`: 
   * 
   * 
