@@ -84,15 +84,16 @@ The methods of packages.content.Users() are as following:
 2. `create_dataframes`: Creating pandas dataframes method
   * Gets the given data_path, reads and creates dataframes for ratings
 3. `__create_unique_lists()`: Getting unique elements method
-  *  Returns to the list of unique elements of given input dataframes 
-4. `users_movies_dict()`: 
-  *  
-5. `user_vector()`: 
-  * 
-  * 
-6. `user_movie_summary()`: 
-  * 
-  *
+  * Returns to the list of unique elements of given input dataframes 
+4. `users_movies_dict()`: Constructing user-movie dict method
+  * Constructs a dictionary with users-movies that rated by users as key-values pairs
+  * The dicitonary has user and rating keys and movies are stored as values between these nested keys
+5. `user_vector()`: Getting user vector method
+  * Gets the weighted average of ratings for movies for each user in order to understand the user's average taste of rating movies
+6. `user_movie_summary()`: Getting summary of key points method
+  * Computes the non rated list of the movies for each user 
+  * Returns the vector of the user given by userID
+
 The methods of packages.content.Content() are as following:
 
 1. `__init__()`: Class constructer
