@@ -97,12 +97,10 @@ The methods of packages.content.Users() are as following:
 The methods of packages.content.Content() are as following:
 
 1. `__init__()`: Class constructer
-  * 
-  * 
-2. `recommend()`: 
-  *
-  * 
-  * 
+  * Initialize the user and movie objects, those are constructed by the help of previous classes
+2. `recommend()`: Predicting recommended movies method
+  * Computing similarities of user and movie vectors with cosine similarity measure
+  * Sorting the results by similarity and give the most similar recommendations
 
 
 ---
