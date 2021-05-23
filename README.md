@@ -117,12 +117,12 @@ The methods of packages.collab.CollabMovies() are as following:
   * Calls the methods for further steps
 2. `create_dataframes`: Creating pandas dataframes method
   * Gets the given data_path, reads and creates dataframes for movies and ratings
-3. `__create_unique_lists()`: 
-  * 
-  * 
-  * 
-4. `choose_algorithm()`: 
-  *  
+3. `__create_unique_lists()`: Getting unique elements method
+  * Returns to the list of unique elements of given input dataframes 
+4. `choose_algorithm()`: Selecting the given algorithm method
+  * Gets the given algorithm input and creates a model from the given algorithm 
+  * K-Nearest Neighbour(KNN) and Singular Value Decomposition(SVD) are the algorithm options
+  * KNN performs clustering and SVD performs matrix factorization techniques
 5. `recommend()`: 
   * 
   * 
