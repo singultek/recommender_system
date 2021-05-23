@@ -126,7 +126,8 @@ The methods of packages.collab.CollabMovies() are as following:
 5. `recommend()`: Predicting recommended movies method
   * Gets the userID, number of recommendations and algorithm as input
   * Creates [surprise.Reader](https://surprise.readthedocs.io/en/stable/reader.html#surprise.reader.Reader) and [surprise.Dataset](https://surprise.readthedocs.io/en/stable/dataset.html#surprise.dataset.Dataset.load_from_df) instances
-  * Trains the model of given algorithm 
+  * Trains the model of given algorithm
+  * Computes the accuracy with Root Mean Squared Error(RMSE)
   * Returns the recommended movies
 
 
@@ -192,7 +193,6 @@ One example of usage of collaborative filtering based recommender system:
  * for userID `65` 
  * for maximum number of recommendations `10`
  * implementing `KNN` algorithm with `user` based and using `cosine` similarity measures.
-
 
 
 ---
