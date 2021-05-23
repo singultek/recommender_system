@@ -71,10 +71,10 @@ The methods of packages.content.ContentMovies() are as following:
   * Creates a dictionary for movie profiles by using genres and tags
   * Uses Bag of Word(BoW) technique for storing genres and tags for each movie
 4. `movie_dictionary_matrix()`: Constructing movies-dictionary(corpus) matrix method
-  *  
-5. `movie_vector()`: 
-  * 
-  * 
+  * Creates the movies-dictionary(corpus) matrix, the dimension of matrix is n x m, where n is the number of movies and m the number of total words in the dictionary(corpus) created from the dataset.
+  * Decides whether dictionary dimension reduction(with SVD truncated technique) will be applied(lsi=True), or not
+5. `movie_vector()`: Getting movie vector method
+  * Returns the vector model of movie given by movieID
 
 The methods of packages.content.Users() are as following:
 
