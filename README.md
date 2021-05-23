@@ -44,6 +44,69 @@ The dataset is can be found on the official [MovieLens](https://grouplens.org/da
 ---
 ## Explaination of project
 
+The project can be divided into 2 main parts.
+
+* Recommending by using Content Based Approach
+* Recommending by using Collaborative Filtering Based Approach
+
+[recommender_system](https://github.com/singultek/recommender_system/blob/main/recommender_system.py) main method should be used. For detailed usage options, please check the usage examples part. recommender_system imports [packages.utils]([recommender_system](https://github.com/singultek/recommender_system/blob/main/packages/utils.py)), thus it can parse the command line arguments and call the proper method from packages.utils (Ex. recommender_system.py can call packages.utils.content if the content based recommender system is selected).
+
+---
+
+### Recommending by using Content Based Approach
+
+This part is responsible for getting the dataset, initializing the Content based approach and recommending movies. All the responsibilities of that part is computed with [packages.content](https://github.com/singultek/recommender_system/blob/main/packages/content.py). Inside this package, one can see the packages.content.ContentMovies(), packages.content.Users() and packages.content.Content() classes, which are built to store the movie, user information and recommend with respect to features of this information. 
+
+The methods of packages.content.ContentMovies() are as following:
+
+1. `__init__()`: 
+  * 
+  * 
+2. `create_dataframes`: 
+  * 
+3. `dictionary_bag_of_words()`: 
+  * 
+  * 
+  * 
+4. `movie_dictionary_matrix()`: 
+  *  
+5. `movie_vector()`: 
+  * 
+  * 
+
+The methods of packages.content.Users() are as following:
+
+1. `__init__()`: 
+  * 
+  * 
+2. `create_dataframes`: 
+  * 
+3. `__create_unique_lists()`: 
+  * 
+  * 
+  * 
+4. `users_movies_dict()`: 
+  *  
+5. `user_vector()`: 
+  * 
+  * 
+6. `user_movie_summary()`: 
+  * 
+  *
+The methods of packages.content.Content() are as following:
+
+1. `__init__()`: 
+  * 
+  * 
+2. `recommend()`: 
+  *
+  * 
+  * 
+
+
+---
+
+### Recommending by using Collaborative Filtering Based Approach
 
 
 ---
