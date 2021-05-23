@@ -65,13 +65,12 @@ The methods of packages.content.ContentMovies() are as following:
   * Checks the tfidf boolean value which stands for term frequency-inverse document frequency and decided which word counter will be used between TF-IDF and regular word counter 
   * Checks the lsi boolean values which stands for latent semantic indexing and decided whether dictionary dimension reduction will be applied, or not
   * Calls the methods for further steps
-2. `create_dataframes`: Reading datasets and creating pandas dataframes method
+2. `create_dataframes`: Creating pandas dataframes method
   * Gets the given data_path, reads and creates dataframes for movies and tags
-3. `dictionary_bag_of_words()`: 
-  * 
-  * 
-  * 
-4. `movie_dictionary_matrix()`: 
+3. `dictionary_bag_of_words()`: Construct movie profiles method
+  * Creates a dictionary for movie profiles by using genres and tags
+  * Uses Bag of Word(BoW) technique for storing genres and tags for each movie
+4. `movie_dictionary_matrix()`: Constructing movies-dictionary(corpus) matrix method
   *  
 5. `movie_vector()`: 
   * 
