@@ -74,7 +74,26 @@ One example of usage of train mode:
 
 `$ python3 recommender_system.py content ./data 65 10`: builts a recommender system with content based approach with the dataset on `./data` for userID `65` and `10` maximum number of recommendations.
 
+### Collaborative
 
+
+In order to see the help for collaborative mode, one can run following on the command line:
+`$ python3 recommender_system.py collab -h`
+
+```
+usage: recommender_system.py collab [-h] dataset_path userID num_recommendation algorithm
+
+Collaborative Filtering Approach
+
+positional arguments:
+  dataset_path        A dataset folder where the data is stored
+  userID              A integer value which indicates the userID to recommend movies
+  num_recommendation  A integer value which indicates the number of recommention given for userID
+  algorithm           A Collaborative Filtering RecSys Approach which will be used to recommend
+
+optional arguments:
+  -h, --help          show this help message and exit
+```
 
 ---
 
