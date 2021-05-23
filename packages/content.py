@@ -89,7 +89,7 @@ class ContentMovies:
             for genre in row['genres'].split('|'):
                 self.movies_dictionary[int(row['movieId'])] += ' ' + genre.lower()
 
-        # Constructing the key-value pairs for genres
+        # Constructing the key-value pairs for tags
         for _, row in tags_df.iterrows():
             self.movies_dictionary[int(row['movieId'])] += ' ' + row['tag'].lower()
         return self.movies_dictionary
