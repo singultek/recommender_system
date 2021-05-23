@@ -160,7 +160,10 @@ optional arguments:
 ```
 One example of usage of content based recommender system:
 
-`$ python3 recommender_system.py content ./data 65 10`: builts a recommender system with content based approach with the dataset on `./data` for userID `65` and `10` maximum number of recommendations.
+`$ python3 recommender_system.py content ./data 65 10`: builts a recommender system with content based approach with 
+ * the dataset on `./data` 
+ * for userID `65` 
+ * for maximum number of recommendations `10`.
 
 ### Collaborative
 
@@ -182,6 +185,15 @@ positional arguments:
 optional arguments:
   -h, --help          show this help message and exit
 ```
+One example of usage of collaborative filtering based recommender system:
+
+`$ python3 recommender_system.py collab ./data 65 10 KNN-cosine-user`: builts a recommender system with collaborative filtering based approach with
+ * the dataset on `./data`
+ * for userID `65` 
+ * for maximum number of recommendations `10`
+ * implementing `KNN` algorithm with `user` based and using `cosine` similarity measures.
+
+
 
 ---
 
