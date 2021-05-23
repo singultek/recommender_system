@@ -202,12 +202,12 @@ One example of usage of collaborative filtering based recommender system:
 
 | model                                              |    RMSE   | 
 |----------------------------------------------------|-----------|
-| collab ./data 65 10 SVD-50-0.002                   |      |
+| collab ./data 65 10 SVD-50-0.002                   |   0.486   |
 | collab ./data 65 10 KNN-cosine-user                |   0.824   |
 | collab ./data 65 10 KNN-cosine-item                |   0.531   |
 | collab ./data 65 10 KNN-pearson-user               |   0.795   |
-| collab ./data 65 10 KNN-pearson-item               |   0   |
-| collab ./data 65 10 KNN-msd-user                   |   0   |
+| collab ./data 65 10 KNN-pearson-item               |   0.517   |
+| collab ./data 65 10 KNN-msd-user                   |   0.826   |
 | collab ./data 65 10 KNN-msd-item                   |   0   |
 | collab ./data 65 10 KNN-pearson_baseline-user      |   0   |
 | collab ./data 65 10 KNN-pearson_baseline-item      |   0   |
