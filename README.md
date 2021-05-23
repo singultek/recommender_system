@@ -14,7 +14,7 @@ The project about building concrete recommender system by using Content-Based an
 ---
 ## Brief Introduction
 
-In this project, 2 main approaches of Recommender System will be presented. First one is the content based recommender approach. In this implementation, additional information about the user and/or item is explored. In this case, the genres and tags of the movies is examined to find out recommendations for given userID. In the second approach, collaborative filtering based recommender system is applied. This time, recommender relies on the user-item interactions by using models such as KNN and SVD. Unfortunately, memory based techniques are not performed due to memory issues.
+In this project, 2 main approaches of Recommender System will be presented. First one is the content based recommender approach. In this implementation, additional information about the user and/or item is explored. In this case, the genres and tags of the movies is examined to find out recommendations for given userID. In the second approach, collaborative filtering model based recommender system is applied. This time, recommender relies on the user-item interactions by using [K-Nearest Neighbour(KNN)](https://surprise.readthedocs.io/en/stable/knn_inspired.html#surprise.prediction_algorithms.knns.KNNBaseline) clustering model and [Singular Value Decomposition(SVD)](https://surprise.readthedocs.io/en/stable/matrix_factorization.html#surprise.prediction_algorithms.matrix_factorization.SVD) matrix factorization model. Unfortunately, collaborative filtering memory based techniques are not performed due to memory issues.
 The dataset is can be found on the official [MovieLens](https://grouplens.org/datasets/movielens/) website. The small,100k version of the dataset is used for this project, that can be found in the [data](https://github.com/singultek/recommender_system/blob/main/data). As the official website implies, there are approxiamately:
 * 100,000 ratings
 * 9000 movies
@@ -205,7 +205,7 @@ One example of usage of collaborative filtering based recommender system:
 | collab ./data 65 10 SVD-50-0.002                   |      |
 | collab ./data 65 10 KNN-cosine-user                |   0.824   |
 | collab ./data 65 10 KNN-cosine-item                |   0.531   |
-| collab ./data 65 10 KNN-pearson-user               |      |
+| collab ./data 65 10 KNN-pearson-user               |   0.795   |
 | collab ./data 65 10 KNN-pearson-item               |   0   |
 | collab ./data 65 10 KNN-msd-user                   |   0   |
 | collab ./data 65 10 KNN-msd-item                   |   0   |
