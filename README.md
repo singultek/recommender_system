@@ -5,9 +5,9 @@ The project about building concrete recommender system by using Content-Based an
 **Table of Contents**
 
 * [Brief Introduction](#brief-introduction)
-* [Directory structure](#directory-structure)
-* [Explaination of project](#explaination-of-project)
-* [Usage examples](#usage-examples)
+* [Directory Structure](#directory-structure)
+* [Explaination of Project](#explaination-of-project)
+* [Usage Examples](#usage-examples)
 * [Discussion of Results](#discussion-of-results)
 * [About Author](#about-author)
 
@@ -22,7 +22,7 @@ The dataset is can be found on the official [MovieLens](https://grouplens.org/da
 * 600 users
 
 ---
-## Directory structure
+## Directory Structure
 ```
 .
 ├── data
@@ -43,7 +43,7 @@ The dataset is can be found on the official [MovieLens](https://grouplens.org/da
 ```
 
 ---
-## Explaination of project
+## Explaination of Project
 
 The project can be divided into 2 main parts.
 
@@ -132,7 +132,7 @@ The methods of packages.collab.CollabMovies() are as following:
 
 
 ---
-## Usage examples
+## Usage Examples
 
 The main [recommender_system](https://github.com/singultek/recommender_system/blob/main/recommender_system.py) code can run in two working modes: content based and collaborative filtering based approaches. Following help commands and usage examples can be followed to run the code from command line:
 
