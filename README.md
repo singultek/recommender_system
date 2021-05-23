@@ -56,7 +56,7 @@ The project can be divided into 2 main parts.
 
 ### Recommending by using Content Based Approach
 
-This part is responsible for getting the dataset, initializing the Content based approach and recommending movies. All the responsibilities of that part is computed with [packages.content](https://github.com/singultek/recommender_system/blob/main/packages/content.py). Inside this package, one can see the packages.content.ContentMovies(), packages.content.Users() and packages.content.Content() classes, which are built instances to store the movie, user information and recommend with respect to features of this information. 
+This part is responsible for getting the dataset, initializing the Content based approach and recommending movies. All the responsibilities of that part is computed with [packages.content](https://github.com/singultek/recommender_system/blob/main/packages/content.py). Inside this package, one can see the packages.content.ContentMovies(), packages.content.Users() and packages.content.Content() classes, which are built to store the movie, user information and recommend with respect to features of this information. 
 
 The methods of packages.content.ContentMovies() are as following:
 
@@ -68,7 +68,7 @@ The methods of packages.content.ContentMovies() are as following:
 2. `create_dataframes`: Creating pandas dataframes method
   * Gets the given data_path, reads and creates dataframes for movies and tags
 3. `dictionary_bag_of_words()`: Construct movie profiles method
-  * Creates a dictionary for movie profiles by using genres and tags
+  * Creates a dictionary(corpus) for movie profiles by using genres and tags
   * Uses Bag of Word(BoW) technique for storing genres and tags for each movie
 4. `movie_dictionary_matrix()`: Constructing movies-dictionary(corpus) matrix method
   * Creates the movies-dictionary(corpus) matrix, the dimension of matrix is n x m, where n is the number of movies and m the number of total words in the dictionary(corpus) created from the dataset.
@@ -89,7 +89,7 @@ The methods of packages.content.Users() are as following:
   * Constructs a dictionary with users-movies that rated by users as key-values pairs
   * The dicitonary has user and rating keys and movies are stored as values between these nested keys
 5. `user_vector()`: Getting user vector method
-  * Gets the weighted average of ratings for movies for each user in order to understand the user's average taste of rating movies
+  * Gets the weighted average of ratings for movies for each user in order to understand the user's average rating trends for movies
 6. `user_movie_summary()`: Getting summary of key points method
   * Computes the non rated list of the movies for each user 
   * Returns the vector of the user given by userID
@@ -121,7 +121,7 @@ The methods of packages.collab.CollabMovies() are as following:
   * Returns to the list of unique elements of given input dataframes 
 4. `choose_algorithm()`: Selecting the given algorithm method
   * Gets the given algorithm input and creates a model from the given algorithm 
-  * [K-Nearest Neighbour(KNN)](https://surprise.readthedocs.io/en/stable/knn_inspired.html#surprise.prediction_algorithms.knns.KNNBaseline) and [Singular Value Decomposition(SVD)](https://surprise.readthedocs.io/en/stable/matrix_factorization.html#surprise.prediction_algorithms.matrix_factorization.SVD) algorithms are the options for model based collaborative filtering approach
+  * [K-Nearest Neighbour(KNN)](https://surprise.readthedocs.io/en/stable/knn_inspired.html#surprise.prediction_algorithms.knns.KNNBaseline) and [Singular Value Decomposition(SVD)](https://surprise.readthedocs.io/en/stable/matrix_factorization.html#surprise.prediction_algorithms.matrix_factorization.SVD) algorithms are the options for collaborative filtering model based approach
   * KNN performs clustering and SVD performs matrix factorization techniques
 5. `recommend()`: Predicting recommended movies method
   * Gets the userID, number of recommendations and algorithm as input
