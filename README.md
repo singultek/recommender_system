@@ -56,14 +56,14 @@ The project can be divided into 2 main parts.
 
 ### Recommending by using Content Based Approach
 
-This part is responsible for getting the dataset, initializing the Content based approach and recommending movies. All the responsibilities of that part is computed with [packages.content](https://github.com/singultek/recommender_system/blob/main/packages/content.py). Inside this package, one can see the packages.content.ContentMovies(), packages.content.Users() and packages.content.Content() classes, which are built to store the movie, user information and recommend with respect to features of this information. 
+This part is responsible for getting the dataset, initializing the Content based approach and recommending movies. All the responsibilities of that part is computed with [packages.content](https://github.com/singultek/recommender_system/blob/main/packages/content.py). Inside this package, one can see the packages.content.ContentMovies(), packages.content.Users() and packages.content.Content() classes, which are built instances to store the movie, user information and recommend with respect to features of this information. 
 
 The methods of packages.content.ContentMovies() are as following:
 
 1. `__init__()`: Class constructer
   * Checks the given data_path
-  * Checks the tfidf boolean value which stands for term frequency-inverse document frequency and decided which word counter will be used between TF-IDF and regular word counter 
-  * Checks the lsi boolean values which stands for latent semantic indexing and decided whether dictionary dimension reduction will be applied, or not
+  * Checks the tfidf boolean value which stands for term frequency-inverse document frequency and decided which word counter will be used between [TF-IDF](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html#sklearn-feature-extraction-text-tfidfvectorizer) and [regular word counter](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn-feature-extraction-text-countvectorizer) 
+  * Checks the lsi boolean values which stands for latent semantic indexing and decided whether [dictionary dimension reduction(with SVD truncated technique)](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.TruncatedSVD.html#sklearn-decomposition-truncatedsvd) will be applied, or not
   * Calls the methods for further steps
 2. `create_dataframes`: Creating pandas dataframes method
   * Gets the given data_path, reads and creates dataframes for movies and tags
