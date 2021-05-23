@@ -14,9 +14,10 @@ The project about building concrete recommender system by using Content-Based an
 ---
 ## Brief Introduction
 
-In this project, 2 main approaches of Recommender System will be presented. First one is the content based recommender approach. In this implementation, additional information about the user and/or item is explored. In this case, the genres of the movies is examined to find out recommendations for given userID. In the second approach, collaborative filtering based recommender system is applied. This time, recommender relies on the user-item interactions by using models such as KNN and SVD. Unfortunately, memory based techniques are not performed due to memory issues.
+In this project, 2 main approaches of Recommender System will be presented. First one is the content based recommender approach. In this implementation, additional information about the user and/or item is explored. In this case, the genres and tags of the movies is examined to find out recommendations for given userID. In the second approach, collaborative filtering based recommender system is applied. This time, recommender relies on the user-item interactions by using models such as KNN and SVD. Unfortunately, memory based techniques are not performed due to memory issues.
 The dataset is can be found on the official [MovieLens](https://grouplens.org/datasets/movielens/) website. The small,100k version of the dataset is used for this project, that can be found in the [data](https://github.com/singultek/recommender_system/blob/main/data). As the official website implies, there are approxiamately:
-* 100,000 ratings 
+* 100,000 ratings
+* 9000 movies
 * 3,600 tag applications  
 * 600 users
 
@@ -59,11 +60,13 @@ This part is responsible for getting the dataset, initializing the Content based
 
 The methods of packages.content.ContentMovies() are as following:
 
-1. `__init__()`: 
-  * 
-  * 
-2. `create_dataframes`: 
-  * 
+1. `__init__()`: Class constructer
+  * Checks the given data_path
+  * Checks the tfidf boolean value which stands for term frequency-inverse document frequency and decided which word counter will be used between TF-IDF and regular word counter 
+  * Checks the lsi boolean values which stands for latent semantic indexing and decided whether dictionary dimension reduction will be applied, or not
+  * Calls the methods for further steps
+2. `create_dataframes`: Reading datasets and creating pandas dataframes method
+  * Gets the given data_path, reads and creates dataframes for movies and tags
 3. `dictionary_bag_of_words()`: 
   * 
   * 
@@ -76,7 +79,7 @@ The methods of packages.content.ContentMovies() are as following:
 
 The methods of packages.content.Users() are as following:
 
-1. `__init__()`: 
+1. `__init__()`: Class constructer
   * 
   * 
 2. `create_dataframes`: 
@@ -95,7 +98,7 @@ The methods of packages.content.Users() are as following:
   *
 The methods of packages.content.Content() are as following:
 
-1. `__init__()`: 
+1. `__init__()`: Class constructer
   * 
   * 
 2. `recommend()`: 
