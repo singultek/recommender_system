@@ -219,8 +219,9 @@ When the results are examined, 3 main outcome can be noticed immediately. First 
 Related with the first outcome, one can state the second outcome as that, item based similarity measures compute better result than user based similarities. One reason for that is item set is more robust and stable comparing to user set, thus it gives slightly more concrete recommendations. Additionally, users may have multiple tastes and that makes hard to predict with user based method comparing to item based one. These reasons may be the indications of why item based method is more preferable for large scaled projects, for example Amazon uses item based method because the changes in the user set becomes inefficient and extremely dynamic for computing. On the contrary, Amazon's number of item set  consists of more or less same products.   
 
 Third and the last outcome is that similarity measures that are used in that project don't affect the overall performance far too much. There are domination of pearson similarity measure slightly, but one cannot consider a little difference as concrete outcome for all collaborative filtering projects.  
-                               
+
 ---
+
 ## About Author
 
 I'm Sinan Gültekin, a master student in Computer and Automation Engineering at the University of Siena. 
@@ -228,3 +229,4 @@ I'm Sinan Gültekin, a master student in Computer and Automation Engineering at 
 For any suggestions or questions, you can contact me via <singultek@gmail.com>
 
 Distributed under the Apache-2.0 License. _See ``LICENSE`` for more information._
+
