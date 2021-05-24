@@ -214,9 +214,11 @@ One example of usage of collaborative filtering based recommender system:
 | collab ./data 65 10 KNN-pearson_baseline-user      |   0.761   |
 | collab ./data 65 10 KNN-pearson_baseline-item      |   0.533   |
 
+When the results are examined, 3 main outcome can be noticed immediately. First observation is that, matrix factorization method(SVD) predominates the results by far comparing to clustering method(KNN). The difference between the performance of methods increase dramatically by decreaseing the learning rate for SVD method. There can be applied grid search technique to identify the best parameters in the range of several parameters, but author didn't see that necessary for this case project. 
 
+Related with the first outcome, one can state the second outcome as that, item based similarity measures compute better result than user based similarities. One reason for that is item set is more robust and stable comparing to user set, thus it gives slightly more concrete recommendations. Additionally, users may have multiple tastes and that makes hard to predict with user based method comparing to item based one. These reasons may be the indications of why item based method is more preferable for large scaled projects, for example Amazon uses item based method because the changes in the user set becomes inefficient and extremely dynamic for computing. On the contrary, Amazon's number of item set  consists of more or less same products.   
 
-
+Third and the last outcome is that similarity measures that are used in that project don't affect the overall performance far too much. There are domination of pearson similarity measure slightly, but one cannot consider a little difference as concrete outcome for all collaborative filtering projects.  
                                
 ---
 ## About Author
